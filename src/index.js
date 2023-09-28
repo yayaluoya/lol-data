@@ -17,7 +17,15 @@ requst(
         __dirname,
         `../dist/${name}-${title}`.replace(/\s+/g, "_")
       );
+      let imgsDir = path.join(__dirname, `../dist/__所有英雄皮肤`);
+      let audioDir = path.join(__dirname, `../dist/__所有英雄音效`);
       fs.mkdirSync(dir, {
+        recursive: true,
+      });
+      fs.mkdirSync(imgsDir, {
+        recursive: true,
+      });
+      fs.mkdirSync(audioDir, {
         recursive: true,
       });
       /**
@@ -28,14 +36,32 @@ requst(
           path.join(dir, `选择音效${path.extname(selectAudio)}`),
           res
         );
-        console.log("下载选择音效");
+        fs.writeFileSync(
+          path.join(
+            audioDir,
+            `${`${name}-${title}`.replace(/\s+/g, "_")}选择音效${path.extname(
+              selectAudio
+            )}`
+          ),
+          res
+        );
+        console.log("选择音效下载完成");
       });
       await requst(banAudio).then((res) => {
         fs.writeFileSync(
           path.join(dir, `禁用音效${path.extname(banAudio)}`),
           res
         );
-        console.log("下载禁用音效");
+        fs.writeFileSync(
+          path.join(
+            audioDir,
+            `${`${name}-${title}`.replace(/\s+/g, "_")}禁用音效${path.extname(
+              banAudio
+            )}`
+          ),
+          res
+        );
+        console.log("禁用音效下载完成");
       });
       /**
        * 皮肤
@@ -51,20 +77,19 @@ requst(
         if (!mainImg) {
           continue;
         }
+        // console.log(mainImg);
         await requst(mainImg)
           .then((res) => {
-            fs.writeFileSync(
-              path.join(
-                dir,
-                `${name.replace(/\s+/g, "_").replace(/\//g, "")}${path.extname(
-                  mainImg
-                )}`
-              ),
-              res
-            );
-            console.log("下载皮肤", name);
+            let fileName = `${name
+              .replace(/\s+/g, "_")
+              .replace(/\//g, "")}${path.extname(mainImg)}`;
+            fs.writeFileSync(path.join(dir, fileName), res);
+            fs.writeFileSync(path.join(imgsDir, fileName), res);
+            console.log(name, "皮肤下载完成");
           })
-          .catch(() => {});
+          .catch((err) => {
+            console.log("下载皮肤出错了", name, err);
+          });
       }
       console.log(
         `第${i + 1}个英雄 ${name}-${title} 资料爬取完成 还剩下${
