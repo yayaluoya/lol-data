@@ -1,0 +1,250 @@
+{
+    "import-com-table": {
+        "scope": "",
+        "prefix": "import-com-table",
+        "body": [
+            "import Table from '@/components/Table/Table.vue';"
+        ],
+        "description": ""
+    },
+    "import-com-query": {
+        "scope": "",
+        "prefix": "import-com-query",
+        "body": [
+            "import Query from '@/components/Page/Query.vue';",
+            ""
+        ],
+        "description": ""
+    },
+    "import-com-page": {
+        "scope": "",
+        "prefix": "import-com-page",
+        "body": [
+            "import Page from '@/components/Page/index.vue';",
+            ""
+        ],
+        "description": ""
+    },
+    "import-com-dialog": {
+        "scope": "",
+        "prefix": "import-com-dialog",
+        "body": [
+            "import Dialog from '@/components/Dialog/index.vue';"
+        ],
+        "description": ""
+    },
+    "img-_": {
+        "scope": "",
+        "prefix": "img-_",
+        "body": [
+            "<img src=\"@/assets/\" alt=\"\" />",
+            ""
+        ],
+        "description": ""
+    },
+    "img-wjs": {
+        "scope": "",
+        "prefix": "img-wjs",
+        "body": [
+            "<img src=\"@/assets/wjs-images/$0\" alt=\"\">",
+            ""
+        ],
+        "description": ""
+    },
+    "img-images": {
+        "scope": "",
+        "prefix": "img-images",
+        "body": [
+            "<img src=\"@/assets/images/$0\" alt=\"\" />",
+            ""
+        ],
+        "description": ""
+    },
+    "el-table-js": {
+        "scope": "",
+        "prefix": "el-table-js",
+        "body": [
+            "/** 分页改变 */",
+            "pageChange(page) {",
+            "  this.pagination.currentPage = page;",
+            "  this.loadData();",
+            "},",
+            "/** 分页大小改变 */",
+            "sizeChange(size) {",
+            "  this.pagination.pageSize = size;",
+            "  this.pagination.currentPage = 1;",
+            "  this.loadData();",
+            "},",
+            "/** 加载数据 */",
+            "loadData() {",
+            "  this.loading.set(true, 'list');",
+            "  list(this.pagination.getPageOp({ test: '测试数据' }))",
+            "    .then((data) => {",
+            "      this.tableData = this.pagination.addIndex(data.records);",
+            "      this.pagination.total = data.total;",
+            "    })",
+            "    .finally(() => {",
+            "      this.loading.set(false, 'list');",
+            "    });",
+            "},"
+        ],
+        "description": ""
+    },
+    "el-table-html": {
+        "scope": "",
+        "prefix": "el-table-html",
+        "body": [
+            "<Table",
+            "  :tableData=\"tableData\"",
+            "  :pagination=\"pagination\"",
+            "  @pageChange=\"pageChange\"",
+            "  @sizeChange=\"sizeChange\"",
+            "  v-loading=\"loading.get('list')\"",
+            "  ref=\"table\"",
+            ">",
+            "  <el-table-column label=\"序号\" prop=\"__index\" width=\"100\" />",
+            "</Table>",
+            ""
+        ],
+        "description": ""
+    },
+    "el-table-column": {
+        "scope": "",
+        "prefix": "el-table-column",
+        "body": [
+            "<el-table-column prop=\"test\" label=\"测试$0\" :resizable=\"false\" align=\"left\">",
+            "</el-table-column>",
+            ""
+        ],
+        "description": ""
+    },
+    "el-select2": {
+        "scope": "",
+        "prefix": "el-select2",
+        "body": [
+            "<el-select v-model=\"formData.$0\" filterable=\"\" placeholder=\"请选择\">",
+            "    <el-option",
+            "        v-for=\"item in options\"",
+            "        :key=\"item.value\"",
+            "        :label=\"item.label\"",
+            "        :value=\"item.value\"",
+            "    >",
+            "    </el-option>",
+            "</el-select>",
+            ""
+        ],
+        "description": ""
+    },
+    "el-select": {
+        "scope": "",
+        "prefix": "el-select",
+        "body": [
+            "<el-select v-model=\"formData.$0\" clearable placeholder=\"请选择\">",
+            "    <el-option label=\"是\" :value=\"1\"> </el-option>",
+            "    <el-option label=\"否\" :value=\"0\"> </el-option>",
+            "</el-select>",
+            ""
+        ],
+        "description": ""
+    },
+    "el-query-js": {
+        "scope": "",
+        "prefix": "el-query-js",
+        "body": [
+            "/** 搜索 */",
+            "search() {",
+            "  this.pagination.currentPage = 1;",
+            "  this.loadData();",
+            "},",
+            "/** 重置搜索 */",
+            "resetSearch() {",
+            "  this.query = ObjectUtils.clone2(query);",
+            "  this.pagination.currentPage = 1;",
+            "  this.loadData();",
+            "},"
+        ],
+        "description": ""
+    },
+    "el-query-html": {
+        "scope": "",
+        "prefix": "el-query-html",
+        "body": [
+            "<Query @search=\"search()\" @resetSearch=\"resetSearch()\">",
+            "  <div class=\"i\">",
+            "    <span>字符串</span>",
+            "    <el-input v-model=\"query.a\" placeholder=\"请输入\" clearable></el-input>",
+            "  </div>",
+            "</Query>",
+            ""
+        ],
+        "description": ""
+    },
+    "css-class-text_ellipsis": {
+        "scope": "",
+        "prefix": "css-class-text_ellipsis",
+        "body": [
+            "text-ellipsis"
+        ],
+        "description": ""
+    },
+    "com-vue2": {
+        "scope": "",
+        "prefix": "com-vue2",
+        "body": [
+            "<template>",
+            "  <div class=\"$0\"></div>",
+            "</template>",
+            "",
+            "<script>",
+            "  export default {",
+            "    components: {},",
+            "    props: {},",
+            "    data() {",
+            "      return {};",
+            "    },",
+            "    mounted() {},",
+            "    destroyed() {},",
+            "    methods: {},",
+            "  };",
+            "</script>",
+            "",
+            "<style scoped lang=\"scss\">",
+            "  .$0 {",
+            "  }",
+            "</style>",
+            ""
+        ],
+        "description": ""
+    },
+    "com-ok": {
+        "scope": "",
+        "prefix": "com-ok",
+        "body": [
+            "✔️"
+        ],
+        "description": ""
+    },
+    "com-icon": {
+        "scope": "",
+        "prefix": "com-icon",
+        "body": [
+            "<svg-icon icon-class=\"$0\"></svg-icon>",
+            ""
+        ],
+        "description": ""
+    },
+    "com-ac": {
+        "scope": "",
+        "prefix": "com-ac",
+        "body": [
+            "import { API } from '@/api/API';",
+            "",
+            "/**",
+            " * 相关的接口",
+            " */",
+            "export class $0 extends API {}",
+            ""
+        ],
+        "description": ""
+    }
+}
