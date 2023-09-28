@@ -49,7 +49,7 @@ requst(
       );
       for (let { name, mainImg } of info.skins) {
         if (!mainImg) {
-          break;
+          continue;
         }
         await requst(mainImg).then((res) => {
           fs.writeFileSync(
