@@ -23,23 +23,23 @@ requst(
       /**
        * 音效
        */
-      console.log("下载音效");
       await requst(selectAudio).then((res) => {
         fs.writeFileSync(
           path.join(dir, `选择音效${path.extname(selectAudio)}`),
           res
         );
+        console.log("下载选择音效");
       });
       await requst(banAudio).then((res) => {
         fs.writeFileSync(
           path.join(dir, `禁用音效${path.extname(banAudio)}`),
           res
         );
+        console.log("下载禁用音效");
       });
       /**
        * 皮肤
        */
-      console.log("下载皮肤");
       let info = await requst(
         `https://game.gtimg.cn/images/lol/act/img/js/hero/${heroId}.js?ts=2826469`
       ).then((res) => JSON.parse(res.toString()));
@@ -51,17 +51,20 @@ requst(
         if (!mainImg) {
           continue;
         }
-        await requst(mainImg).then((res) => {
-          fs.writeFileSync(
-            path.join(
-              dir,
-              `${name.replace(/\s+/g, "_").replace(/\//g, "")}${path.extname(
-                mainImg
-              )}`
-            ),
-            res
-          );
-        });
+        await requst(mainImg)
+          .then((res) => {
+            fs.writeFileSync(
+              path.join(
+                dir,
+                `${name.replace(/\s+/g, "_").replace(/\//g, "")}${path.extname(
+                  mainImg
+                )}`
+              ),
+              res
+            );
+            console.log("下载皮肤", name);
+          })
+          .catch(() => {});
       }
       console.log(
         `第${i + 1}个英雄 ${name}-${title} 资料爬取完成 还剩下${
